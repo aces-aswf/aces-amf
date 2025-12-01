@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile version="2.0" xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:cdl="urn:ASC:CDL:v1.01">
+    <aces:amfInfo>
+        <aces:dateTime>
+            <aces:creationDateTime>2023-08-15T08:00:00-07:00</aces:creationDateTime>
+            <aces:modificationDateTime>2023-08-15T08:00:00-07:00</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:948E6925-2B2B-4825-8540-368304288A06</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:dateTime>
+                <aces:creationDateTime>2023-08-15T08:00:00-07:00</aces:creationDateTime>
+                <aces:modificationDateTime>2023-08-15T08:00:00-07:00</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:B5Fd5DfB-ca3b-E62a-5657-dDf31E32cE92</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:lookTransform applied="false">
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACEScct_to_ACES.a1.0.3</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:ColorCorrectionRef ref="123"/>
+            <aces:file>123.ccc</aces:file>
+        </aces:lookTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>
