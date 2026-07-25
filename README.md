@@ -5,10 +5,10 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![AMF Schema and Example
-Validation](https://github.com/ampas/aces-amf/actions/workflows/validate-xml.yml/badge.svg)
+Validation](https://github.com/aces-aswf/aces-amf/actions/workflows/validate-xml.yml/badge.svg)
 ![GitHub release (with
-filter)](https://img.shields.io/github/v/release/ampas/aces-amf) [![CLA
-assistant](https://cla-assistant.io/readme/badge/ampas/aces-amf)](https://cla-assistant.io/ampas/aces-amf)
+filter)](https://img.shields.io/github/v/release/aces-aswf/aces-amf) [![CLA
+assistant](https://cla-assistant.io/readme/badge/aces-aswf/aces-amf)](https://cla-assistant.io/aces-aswf/aces-amf)
 
 The ACES Metadata File (AMF) is an XML sidecar format for exchanging the
 metadata required to reconstruct ACES viewing pipelines. It specifies the
@@ -29,32 +29,32 @@ Documentation](https://docs.acescentral.com/amf/specification/).
 
 ## Contributing
 
-ACES depends on community participation. Developers, manufacturers, and end
-users are encouraged to contribute code, bug fixes, documentation, and other
-technical artifacts.
+Before the project can accept any code submissions through GitHub, you must fulfill these prerequisites:
 
-All contributors must have a signed Contributor License Agreement (CLA) on file
-to ensure that the project can freely use your contributions. 
+1. **Contributor License Agreement (CLA):** All contributors **must** have a signed CLA on file to ensure the project can freely use your contributions.
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+2. **Developer Certificate of Origin (DCO):** All commits **must** be signed off (e.g., `git commit -s`) to verify that you have the right to submit the code.
 
-## Governance
+3. **AI Assistance Disclosure:** While not currently blocked by CI checks, any commits or PRs built with AI assistance are expected to include an `Assisted-by: TOOL/MODEL` line to maintain transparency and human accountability.
 
-This repository is a submodule of the ACES project, which is governed by the
-Academy Software Foundation.
-
-For details about how the project operates, refer to the
-[GOVERNANCE.md](https://github.com/ampas/aces/blob/main/GOVERNANCE.md) file
-found in in the top-level ACES repository.
+Please see [Contributing Guidelines](https://github.com/aces-aswf/.github/blob/main/CONTRIBUTING.md) for more details.
 
 ## Reporting Issues
 
+### General Issues
 To report a problem with AMF, please open an
-[issue](https://github.com/ampas/aces-amf/issues).
+[issue](https://github.com/aces-aswf/aces-amf/issues) in this repository.
 
-If the issue is senstive in nature or a security related issue, please do not
-report in the issue tracker. Instead refer to [SECURITY.md](SECURITY.md) for
-more information about the project security policy.
+### Security
+If the issue is sensitive in nature or a security related issue, please do not
+report in the issue tracker. Instead refer to [SECURITY](https://github.com/aces-aswf/.github/blob/main/SECURITY.md) for more information about the project security policy.
+
+## Governance
+
+This repository is part of ACES, a project governed by the Academy Software Foundation.
+
+For details about how the ACES project operates, please see
+[GOVERNANCE](https://github.com/aces-aswf/.github/blob/main/GOVERNANCE.md).
 
 ## License
 
