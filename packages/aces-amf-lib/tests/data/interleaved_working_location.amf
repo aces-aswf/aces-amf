@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile
+    xmlns:aces="urn:ampas:aces:amf:v2.0"
+    xmlns:cdl="urn:ASC:CDL:v1.01"
+    version="2.0">
+
+    <aces:amfInfo>
+        <aces:description>Test fixture for workingLocation interleaving</aces:description>
+        <aces:dateTime>
+            <aces:creationDateTime>2024-06-01T12:00:00Z</aces:creationDateTime>
+            <aces:modificationDateTime>2024-06-01T12:00:00Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:11111111-1111-1111-1111-111111111111</aces:uuid>
+    </aces:amfInfo>
+
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Pipeline with interleaved workingLocation</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2024-06-01T12:00:00Z</aces:creationDateTime>
+                <aces:modificationDateTime>2024-06-01T12:00:00Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:22222222-2222-2222-2222-222222222222</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+
+        <aces:lookTransform applied="true">
+            <aces:description>Pre-working-location look</aces:description>
+            <aces:uuid>urn:uuid:33333333-3333-3333-3333-333333333333</aces:uuid>
+            <aces:file>pre_look.clf</aces:file>
+        </aces:lookTransform>
+
+        <aces:workingLocation/>
+
+        <aces:lookTransform applied="false">
+            <aces:description>Post-working-location look</aces:description>
+            <aces:uuid>urn:uuid:44444444-4444-4444-4444-444444444444</aces:uuid>
+            <aces:file>post_look.clf</aces:file>
+        </aces:lookTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

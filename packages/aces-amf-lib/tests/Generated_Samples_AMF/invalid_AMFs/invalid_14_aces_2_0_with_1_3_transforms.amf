@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>Invalid: ACES 2.0 system with ACES 1.3 transforms</aces:description>
+        <aces:author>
+            <aces:name>Recipe System</aces:name>
+            <aces:emailAddress>recipes@example.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:e2b74b7e-574e-4998-9591-bb1b63db0f47</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Version mismatch example</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:a7c1435d-6b59-477c-b0c8-bdd9b5316423</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>2</aces:majorVersion>
+                <aces:minorVersion>0</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="true">
+            <aces:description>ARRI V3 LogC EI800 (ACES 1.x ID in ACES 2.0 pipeline)</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:IDT.ARRI.Alexa-v3-logC-EI800.a1.v2</aces:transformId>
+        </aces:inputTransform>
+        <aces:outputTransform applied="true">
+            <aces:description>P3-D65 ST2084 1000-nit Output (ACES 1.x ID in ACES 2.0 pipeline)</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:RRTODT.Academy.P3D65_1000nits_15nits_ST2084.a1.1.0</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>
