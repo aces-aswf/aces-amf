@@ -4,6 +4,10 @@ Python package for querying the official [ACES](https://acescentral.com/) transf
 
 This package bundles a snapshot of the official ACES `transforms.json` from the [aces-aswf/aces](https://github.com/aces-aswf/aces) repository.
 
+The bundled snapshot is minified and omits `transformUrl`, which the registry does
+not use, to reduce package size. It includes the typo and transform ID fixes from
+[`0c78fc5`](https://github.com/aces-aswf/aces/commit/0c78fc58267a25fde4510a76bd9d869d2e55c396).
+
 ## Installation
 
 ```bash
@@ -101,27 +105,33 @@ registry.get_equivalent_ids(
 }
 ```
 
-## Updating for a new ACES release
+## Updating the bundled registry
 
-When a new version of ACES is released:
+For an ACES release or a registry correction:
 
-1. **Get the updated `transforms.json`** from the [aces-aswf/aces](https://github.com/aces-aswf/aces) repository. The new version will appear as a new entry in `transformsData`.
+1. **Review the proposed registry changes**, including transform IDs, inverse
+   references, and previous equivalent IDs.
 
-2. **Replace the bundled data file** at `src/aswf/aces/transforms/data/aces_transforms.json`.
+2. **Update the bundled data file** at
+   `src/aswf/aces/transforms/data/aces_transforms.json`, preserving its minified format
+   and omission of `transformUrl`. Document the origin of any imported changes.
 
-3. **Bump the package version** in `pyproject.toml` and `src/aswf/aces/transforms/__init__.py`.
+3. **Update affected AMF examples and fixtures** if any transform IDs changed, and
+   add regression coverage for corrected lookup or equivalence behavior.
 
-4. **Run tests** to verify:
+4. **Run the full test suite** from the repository root:
    ```bash
-   pytest tests/ -v
+   .venv/bin/python -m pytest packages/*/tests
    ```
 
-5. **Release** to PyPI. Downstream consumers update with:
+5. **For a package release**, bump the version in `pyproject.toml` and
+   `src/aswf/aces/transforms/__init__.py`, then release to PyPI. Downstream consumers update with:
    ```bash
    pip install --upgrade aswf-aces-transforms
    ```
 
-No code changes are needed — the registry reads the JSON data dynamically. Only the data file and version number change.
+The registry reads the JSON data dynamically; registry corrections do not require
+changes to the lookup implementation.
 
 ## ACES versions currently included
 

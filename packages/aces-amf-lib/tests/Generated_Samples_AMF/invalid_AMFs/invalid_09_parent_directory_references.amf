@@ -28,7 +28,7 @@
         </aces:pipelineInfo>
         <aces:inputTransform applied="true">
             <aces:description>Canon Log 3 Cinema Gamut to ACES2065-1</aces:description>
-            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a1.v1</aces:transformId>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a2.v1</aces:transformId>
         </aces:inputTransform>
         <aces:lookTransform applied="true">
             <aces:description>Look with Parent Directory Traversal</aces:description>

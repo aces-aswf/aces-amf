@@ -28,7 +28,7 @@
         </aces:pipelineInfo>
         <aces:inputTransform applied="false">
             <aces:description>Canon C300 Mark III CLog3 to ACES</aces:description>
-            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a1.v1</aces:transformId>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a2.v1</aces:transformId>
         </aces:inputTransform>
         <aces:lookTransform applied="false">
             <aces:description>Hero Grade in ACEScct</aces:description>
