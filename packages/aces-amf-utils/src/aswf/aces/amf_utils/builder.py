@@ -328,7 +328,7 @@ class AMFBuilder(_AMFMutatorMixin):
     to get the final ``AcesMetadataFile`` instance.
     """
 
-    def __init__(self, aces_version: tuple[int, int, int] = (1, 3, 0)):
+    def __init__(self, aces_version: tuple[int, int, int] = (2, 0, 0)):
         self._amf = minimal_amf(aces_version=aces_version)
 
     def build(self) -> AcesMetadataFile:

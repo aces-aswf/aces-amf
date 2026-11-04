@@ -51,7 +51,9 @@ registry.list_transforms(version="v2.0.0")
 registry.list_transforms(version="v2.0.0+2025.04.04")
 
 # No version = search across all versions
-registry.is_valid_transform_id("urn:ampas:aces:transformId:v1.5:IDT.ARRI...")
+registry.is_valid_transform_id(
+    "urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1"
+)
 ```
 
 ## Version migration

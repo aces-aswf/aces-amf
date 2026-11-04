@@ -40,8 +40,8 @@ def test_minimal_amf():
     pipeline_id = uuid.UUID(pipeline_info.uuid)
     assert pipeline_id
     assert pipeline_id.version == 4
-    assert pipeline_info.system_version.major_version == 1
-    assert pipeline_info.system_version.minor_version == 3
+    assert pipeline_info.system_version.major_version == 2
+    assert pipeline_info.system_version.minor_version == 0
     assert pipeline_info.system_version.patch_version == 0
 
 
@@ -68,7 +68,9 @@ def test_cdl_look_transform(aces_amf_examples_path):
     amf, ns_map = amf_helpers.from_amf_file(amf_path)
     ref_look_transform = amf.pipeline.look_transforms[0]
 
-    look_transform = amf_factories.cdl_look_transform(slope=(2.0, 2.0, 2.0), offset=(0.1, 0.1, 0.1), power=(1.0, 1.0, 1.0), saturation=1.0)
+    look_transform = amf_factories.cdl_look_transform(
+        slope=(2.0, 2.0, 2.0), offset=(0.1, 0.1, 0.1), power=(1.0, 1.0, 1.0), saturation=1.0, aces_version=(1, 3, 0)
+    )
     assert look_transform.description is None
 
     look_transform.description = "Technical Grade"

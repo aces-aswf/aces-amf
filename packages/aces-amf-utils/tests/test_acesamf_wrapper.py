@@ -23,7 +23,7 @@ class TestACESAMFConstruction:
 
     def test_new_default_aces_version(self):
         amf = ACESAMF.new()
-        assert amf.aces_version == (1, 3, 0)
+        assert amf.aces_version == (2, 0, 0)
 
     def test_new_custom_aces_version(self):
         amf = ACESAMF.new(aces_version=(2, 0, 0))

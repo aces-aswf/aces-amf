@@ -26,11 +26,11 @@ amf_doc = (AMFBuilder()
     .with_description("My Show - Ep 1")
     .with_author(amf.AuthorType(name="Jane Doe", email_address="jane@example.com"))
     .with_input_transform(amf.InputTransformType(
-        transform_id="urn:ampas:aces:transformId:v1.5:IDT.ARRI.ARRI-LogC4.a1.v1",
+        transform_id="urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1",
         applied=False))
     .with_look_transform(cdl_look_transform(slope=(1.2, 1.0, 0.8), saturation=0.95))
     .with_output_transform(amf.OutputTransformType(
-        transform_id="urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3",
+        transform_id="urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1",
         applied=False))
     .build())
 ```
@@ -65,7 +65,7 @@ aces_amf = (ACESAMF.new()
 
 ```python
 # Create a new minimal AMF
-amf = ACESAMF.new(aces_version=(1, 3, 0))
+amf = ACESAMF.new(aces_version=(2, 0, 0))
 
 # Load an AMF v2 file
 amf = ACESAMF.from_file("input.amf", validate=True)
@@ -136,7 +136,7 @@ amf = (AMFBuilder(aces_version=(2, 0, 0))
     .with_description("DI Grade")
     .with_author(amf.AuthorType(name="Colorist", email_address="color@studio.com"))
     .with_input_transform(amf.InputTransformType(
-        transform_id="urn:ampas:aces:transformId:v1.5:IDT.ARRI.ARRI-LogC4.a1.v1",
+        transform_id="urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1",
         applied=False))
     .with_look_transform(amf.LookTransformType(
         file="grade.clf", description="Primary grade", applied=True))
@@ -144,7 +144,7 @@ amf = (AMFBuilder(aces_version=(2, 0, 0))
     .with_look_transform(amf.LookTransformType(
         file="trim.clf", description="Trim pass", applied=False))
     .with_output_transform(amf.OutputTransformType(
-        transform_id="urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3",
+        transform_id="urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1",
         applied=False))
     .build())
 
@@ -228,8 +228,8 @@ amf info -v shot.amf              # verbose with transform details
 
 # Create a new AMF
 amf create output.amf -d "My Show" --author "Jane Doe" \
-    --idt "urn:ampas:aces:transformId:v1.5:IDT.ARRI.ARRI-LogC4.a1.v1" \
-    --odt "urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3"
+    --idt "urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1" \
+    --odt "urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1"
 
 # Add a CDL look transform
 amf add-cdl shot.amf --slope 1.2 1.0 0.8 --saturation 0.95 -d "Primary grade"

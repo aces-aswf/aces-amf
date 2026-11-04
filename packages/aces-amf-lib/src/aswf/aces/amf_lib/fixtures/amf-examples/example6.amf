@@ -47,6 +47,9 @@
         <aces:lookTransform applied="false">
             <aces:description>Technical Grade</aces:description>
             <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3</aces:transformId>
+                </aces:toCdlWorkingSpace>
                 <aces:fromCdlWorkingSpace>
                     <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACEScct_to_ACES.a1.0.3</aces:transformId>
                 </aces:fromCdlWorkingSpace>

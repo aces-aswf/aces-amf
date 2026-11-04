@@ -25,7 +25,7 @@ print(f"Input: {amf_doc.pipeline.input_transform}")
 # Modify directly via Pydantic models
 amf_doc.amf_info.description = "Updated Show"
 amf_doc.pipeline.input_transform = amf.InputTransformType(
-    transform_id="urn:ampas:aces:transformId:v1.5:IDT.ARRI.ARRI-LogC4.a1.v1",
+    transform_id="urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1",
     applied=False,
 )
 save_amf(amf_doc, "output.amf", validate=False)

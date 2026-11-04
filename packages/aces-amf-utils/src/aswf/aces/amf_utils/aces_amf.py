@@ -75,7 +75,7 @@ class ACESAMF(_AMFMutatorMixin):
     # ------------------------------------------------------------------
 
     @classmethod
-    def new(cls, aces_version: tuple[int, int, int] = (1, 3, 0), *, registry=None) -> ACESAMF:
+    def new(cls, aces_version: tuple[int, int, int] = (2, 0, 0), *, registry=None) -> ACESAMF:
         """Create a new minimal AMF.
 
         Args:
@@ -194,6 +194,13 @@ class ACESAMF(_AMFMutatorMixin):
     # ------------------------------------------------------------------
     # Derived read-only properties (ACESAMF-specific)
     # ------------------------------------------------------------------
+
+    @property
+    def registry(self):
+        """Transform registry in use (the default registry if none was supplied)."""
+        if self._registry is None:
+            self._registry = _default_registry()
+        return self._registry
 
     @property
     def aces_version(self) -> tuple[int, int, int] | None:

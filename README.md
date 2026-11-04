@@ -91,22 +91,16 @@ from aswf.aces.amf_lib import amf
 from aswf.aces.amf_utils import ACESAMF
 from aswf.aces.amf_utils.factories import cdl_look_transform
 
-# CDL grade with ACEScct working space
+# CDL grade. The working space defaults to ACEScct, using the transform IDs for aces_version.
+# Pass working_space=<CSC URN> (either direction) to use another CSC; its inverse is derived.
 primary_grade = cdl_look_transform(
     slope=(1.1, 1.0, 0.9),
     offset=(0.01, 0.0, -0.01),
     saturation=0.95,
+    aces_version=(2, 0, 0),
 )
 primary_grade.description = "Primary Grade"
 primary_grade.applied = False
-primary_grade.cdl_working_space = amf.CdlWorkingSpaceType(
-    from_cdl_working_space=amf.WorkingSpaceTransformType(
-        transform_id="urn:ampas:aces:transformId:v2.0:CSC.Academy.ACEScct_to_ACES.a2.v1",
-    ),
-    to_cdl_working_space=amf.WorkingSpaceTransformType(
-        transform_id="urn:ampas:aces:transformId:v2.0:CSC.Academy.ACES_to_ACEScct.a2.v1",
-    ),
-)
 
 # A file-based look (e.g. a show LUT)
 show_look = amf.LookTransformType(
@@ -256,14 +250,14 @@ if result.has_differences:
 from aswf.aces.common import TransformURN
 
 urn = TransformURN.parse(
-    "urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3"
+    "urn:ampas:aces:transformId:v2.0:CSC.Academy.ACES_to_ACEScct.a2.v1"
 )
-print(urn.spec_version)    # v1.5
-print(urn.transform_type)  # ACEScsc
+print(urn.spec_version)    # v2.0
+print(urn.transform_type)  # CSC
 print(urn.namespace)       # Academy
 print(urn.name)            # ACES_to_ACEScct
-print(urn.version_suffix)  # a1.0.3
-print(urn.is_v1)           # True
+print(urn.version_suffix)  # a2.v1
+print(urn.is_v2)           # True
 ```
 
 ### CLI Quick Reference
@@ -282,6 +276,13 @@ amf create output.amf -d "My Shot" \
 
 # Add a CDL grade
 amf add-cdl shot_001.amf --slope 1.1 1.0 0.9 --saturation 0.95 -o graded.amf
+
+# Add a CDL authored in another working space. Give any CSC URN (either direction); the
+# inverse is derived so the from/to pair always matches. CSCs with no inverse are rejected,
+# and a URN from another ACES version is resolved to the canonical ID for the file's version.
+# Without --working-space the CDL uses ACEScct for the file's ACES version.
+amf add-cdl shot_001.amf --slope 1.1 1.0 0.9 \
+  --working-space "urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1" -o graded.amf
 
 # Compare two AMFs
 amf diff shot_001_v1.amf shot_001_v2.amf

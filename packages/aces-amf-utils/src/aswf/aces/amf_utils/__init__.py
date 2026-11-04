@@ -4,7 +4,13 @@
 from aswf.aces.amf_utils.aces_amf import ACESAMF
 from aswf.aces.amf_utils.builder import AMFBuilder
 from aswf.aces.amf_utils.diff import DiffResult, FieldDiff, diff_amf
-from aswf.aces.amf_utils.factories import cdl_look_transform, cdl_look_transform_to_dict, minimal_amf, prepare_for_write
+from aswf.aces.amf_utils.factories import (
+    cdl_look_transform,
+    cdl_look_transform_to_dict,
+    cdl_working_space,
+    minimal_amf,
+    prepare_for_write,
+)
 from aswf.aces.amf_utils.template_registry import (
     REGISTRY,
     TemplateCategory,
@@ -26,6 +32,7 @@ __all__ = [
     "TemplateRegistry",
     "minimal_amf",
     "cdl_look_transform",
+    "cdl_working_space",
     "cdl_look_transform_to_dict",
     "prepare_for_write",
 ]

@@ -19,8 +19,8 @@ from aswf.aces.amf_utils.builder import AMFBuilder
 @click.option("--odt", "odt_id", help="Output transform ID (URN).")
 @click.option(
     "--aces-version",
-    default="1.3.0",
-    help="ACES version (major.minor.patch). Default: 1.3.0",
+    default="2.0.0",
+    help="ACES version (major.minor.patch). Default: 2.0.0",
 )
 @click.option("--force", "-f", is_flag=True, help="Overwrite output if it exists.")
 @click.pass_context
@@ -34,7 +34,7 @@ def create(ctx, output, description, author, author_email, idt_id, odt_id, aces_
 
     parts = aces_version.split(".")
     if len(parts) != 3:
-        raise click.ClickException("ACES version must be major.minor.patch (e.g. 1.3.0)")
+        raise click.ClickException("ACES version must be major.minor.patch (e.g. 2.0.0)")
     version = tuple(int(p) for p in parts)
 
     builder = AMFBuilder(aces_version=version)
