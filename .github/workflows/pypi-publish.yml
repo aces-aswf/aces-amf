@@ -1,0 +1,91 @@
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [main]
+  # Or you can keep release triggers if preferred:
+  # release:
+  #   types: [created]
+
+jobs:
+  get-packages:
+    name: Discover Packages
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.set-matrix.id == 'set-matrix' && steps.set-matrix.outputs.packages || '["aswf-aces-common", "aswf-aces-amf-lib", "aswf-aces-amf-utils", "aswf-aces-transforms"]' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          # Output the list of your 4 package folder names as a JSON array
+          echo 'packages=["aswf-aces-common"]' >> $GITHUB_OUTPUT
+
+  publish:
+    name: Publish (${{ matrix.package }})
+    needs: get-packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.get-packages.outputs.packages) }}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/${{ matrix.package }}
+    permissions:
+      id-token: write # Mandatory for PyPI OIDC Trusted Publishing
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Check if version already exists on PyPI
+        id: check-version
+        run: |
+          PKG_DIR="packages/${{ matrix.package }}"
+          
+          # Extract version from the package's pyproject.toml using python
+          PKG_VERSION=$(python -c "
+            import tomllib
+            with open('$PKG_DIR/pyproject.toml', 'rb') as f:
+                data = tomllib.load(f)
+            print(data['project']['version'])
+            ")
+          echo "Package: ${{ matrix.package }}"
+          echo "Local Version: $PKG_VERSION"
+          
+          # Check PyPI JSON API to see if this version is already published
+          PUBLISHED_VERSIONS=$(python -c "
+            import urllib.request, json
+            url = 'https://pypi.org/pypi/${{ matrix.package }}/json'
+            try:
+                with urllib.request.urlopen(url) as response:
+                    data = json.loads(response.read().decode())
+                    print(' '.join(data['releases'].keys()))
+            except Exception:
+                print('')
+            ")
+          
+          if echo "$PUBLISHED_VERSIONS" | grep -qw "$PKG_VERSION"; then
+            echo "version_exists=true" >> $GITHUB_OUTPUT
+            echo "::notice::Version $PKG_VERSION of ${{ matrix.package }} already exists on PyPI. Skipping publishing."
+          else
+            echo "version_exists=false" >> $GITHUB_OUTPUT
+            echo "::notice::Version $PKG_VERSION of ${{ matrix.package }} is new. Proceeding to publish."
+          fi
+
+      - name: Build package wheel and source distribution
+        if: steps.check-version.outputs.version_exists == 'false'
+        run: |
+          uv build --package ${{ matrix.package }}
+
+      - name: Publish package distributions to PyPI
+        if: steps.check-version.outputs.version_exists == 'false'
+        uses: pypa/gh-action-pypi-publish@release/v1
