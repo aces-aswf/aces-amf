@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProcessList xmlns="urn:AMPAS:CLF:v3.0" id="urn:uuid:ac3d240e-a475-4d9d-b4bd-9e505250add1" name="Additional Identity LUT" compCLFversion="3.0">
+    <Description>Additional identity LUT for AMF multiple-file reference testing</Description>
+    <InputDescriptor>ACES2065-1</InputDescriptor>
+    <OutputDescriptor>ACES2065-1</OutputDescriptor>
+    <LUT1D id="identity-lut" name="Identity LUT" inBitDepth="32f" outBitDepth="32f" interpolation="linear">
+        <Array dim="2 3">
+            0.0 0.0 0.0
+            1.0 1.0 1.0
+        </Array>
+    </LUT1D>
+</ProcessList>

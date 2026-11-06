@@ -315,7 +315,7 @@
 	<xs:complexType name="authorType">
 		<xs:sequence>
 			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="emailAddress" type="aces:emailAddressType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="emailAddress" type="aces:emailAddressType" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aces:acesMetadataFile>
+<aces:acesMetadataFile version="2.0" xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:cdl="urn:ASC:CDL:v1.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ampas:aces:amf:v2.0 file:acesMetadataFile.xsd">
+    <aces:amfInfo>
+        <aces:description>DLR_DIT, DAY_090, Dailies Delivery, Exported by DaVinci Resolve</aces:description>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-06-09T09:08:43Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-06-09T09:08:43Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:33a658a8-8c4f-54d6-b014-0ed4bc4ba6dd</aces:uuid>
+    </aces:amfInfo>
+    <aces:clipId>
+        <aces:clipName>A273C025_260603UT</aces:clipName>
+        <aces:file>A273C025_260603UT.mov</aces:file>
+    </aces:clipId>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:author>
+                <aces:name>DaVinci Resolve Studio v20.2.2</aces:name>
+            </aces:author>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-06-09T09:08:43Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-06-09T09:08:43Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:00000000-0000-0000-0000-000000000000</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>2</aces:majorVersion>
+                <aces:minorVersion>0</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="true">
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Sony.Venice_SLog3_SGamut3Cine_to_ACES.a2.v1</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="true">
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:Look.Academy.ReferenceGamutCompress.a2.v1</aces:transformId>
+        </aces:lookTransform>
+        <aces:workingLocation/>
+        <aces:lookTransform applied="true">
+            <aces:hash algorithm="http://www.w3.org/2001/04/xmldsig-more#md5">b8ee037eafea9d847d52bdc54c05d38c</aces:hash>
+            <aces:file>A273C025_260603UT_24_CorrectorNode_ClipGraph_48.clf</aces:file>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.7296 0.758581 0.777672</cdl:Slope>
+                <cdl:Offset>0.349966 0.323442 0.31876</cdl:Offset>
+                <cdl:Power>1.64245 1.61266 1.62759</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.915918 0.91125 0.916224</cdl:Slope>
+                <cdl:Offset>0.00165163 0.000205077 -0.0034912</cdl:Offset>
+                <cdl:Power>0.957818 0.946037 0.94021</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.932233 0.932233 0.932233</cdl:Slope>
+                <cdl:Offset>0.0255406 0.0255406 0.0255406</cdl:Offset>
+                <cdl:Power>1.088 1.088 1.088</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.997086 0.998783 1.00931</cdl:Slope>
+                <cdl:Offset>-0.00477958 0.002035 0.00704676</cdl:Offset>
+                <cdl:Power>1.02687 0.990735 0.957488</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.985145 0.985145 0.985145</cdl:Slope>
+                <cdl:Offset>-0.0330074 -0.0330074 -0.0330074</cdl:Offset>
+                <cdl:Power>0.971031 0.971031 0.971031</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>0.944149 0.954769 0.974733</cdl:Slope>
+                <cdl:Offset>0 0 0</cdl:Offset>
+                <cdl:Power>1.04833 1.04833 1.04833</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.0462 1.0462 1.0462</cdl:Slope>
+                <cdl:Offset>-0.00451398 -0.00451398 -0.00451398</cdl:Offset>
+                <cdl:Power>1.04141 1.04176 1.03681</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.21129 1.2362 1.24635</cdl:Slope>
+                <cdl:Offset>-0.0400186 -0.0408413 -0.0411767</cdl:Offset>
+                <cdl:Power>0.897662 0.906393 0.906979</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.01214 0.996465 0.979942</cdl:Slope>
+                <cdl:Offset>0 0 0</cdl:Offset>
+                <cdl:Power>1.0002 1.00003 0.999525</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.00189 1.00144 0.99544</cdl:Slope>
+                <cdl:Offset>0 0 0</cdl:Offset>
+                <cdl:Power>1 1 1</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <aces:hash algorithm="http://www.w3.org/2001/04/xmldsig-more#md5">60e666ac09593e0d709eb23b9a4775b2</aces:hash>
+            <aces:file>A273C025_260603UT_24_CorrectorNode_ClipGraph_49.clf</aces:file>
+        </aces:lookTransform>
+        <aces:outputTransform applied="true">
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:Output.Academy.P3-D65_1000nit_in_Rec2100-D65_ST2084.a2.v1</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>
