@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>No Author Information</aces:description>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:c13f5e23-6f7e-462e-9cd1-ff83adc1ff4c</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Testing Author Validation</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:c22f7173-b909-4873-bfe5-439579a74903</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>2</aces:majorVersion>
+                <aces:minorVersion>0</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="true">
+            <aces:description>Sony S-Log3 S-Gamut3 to ACES2065-1</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Sony.SLog3_SGamut3_to_ACES.a2.v1</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="true">
+            <aces:description>Test Look</aces:description>
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Academy.ACES_to_ACEScct.a2.v1</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Academy.ACEScct_to_ACES.a2.v1</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.1 1.0 1.0</cdl:Slope>
+                <cdl:Offset>0.0 0.0 0.0</cdl:Offset>
+                <cdl:Power>1.0 1.0 1.0</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1.0</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:outputTransform applied="true">
+            <aces:description>Rec.709 BT.1886 Output</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

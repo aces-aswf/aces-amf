@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>CDL in LogC Working Space</aces:description>
+        <aces:author>
+            <aces:name>On-Set Colorist</aces:name>
+            <aces:emailAddress>onset@production.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:25e35fab-071d-47ce-9174-7e2698c8e644</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Grading in Camera Native Log Space</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:ad592e25-c9a1-449a-a5c3-ae02f4a43fc8</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>1</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="false">
+            <aces:description>ARRI Alexa LogC to ACES</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:IDT.ARRI.Alexa-v3-logC-EI800.a1.v2</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="false">
+            <aces:description>CDL Grade in LogC EI800 Working Space</aces:description>
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_LogC_EI800_AWG.a1.1.0</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.LogC_EI800_AWG_to_ACES.a1.1.0</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.05 1.02 0.98</cdl:Slope>
+                <cdl:Offset>0.01 0.0 -0.01</cdl:Offset>
+                <cdl:Power>1.0 1.0 1.0</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1.08</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:outputTransform applied="false">
+            <aces:description>ACES to Rec.709</aces:description>
+            <aces:referenceRenderingTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:RRT.a1.0.3</aces:transformId>
+            </aces:referenceRenderingTransform>
+            <aces:outputDeviceTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3</aces:transformId>
+            </aces:outputDeviceTransform>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

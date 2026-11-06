@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>INVALID: Duplicate UUID</aces:description>
+        <aces:author>
+            <aces:name>Test Suite</aces:name>
+            <aces:emailAddress>test@example.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:76413fd8-689c-49aa-ad97-f5e33b581c04</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Same UUID used multiple times</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:87071656-bb01-428f-ace0-147fba3e9c2d</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>2</aces:majorVersion>
+                <aces:minorVersion>0</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="true">
+            <aces:description>Test IDT</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="true">
+            <aces:description>Look 1</aces:description>
+            <aces:uuid>urn:uuid:06af2027-9c97-4b0f-94a3-e7db2d594649</aces:uuid>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <aces:description>Look 2</aces:description>
+            <aces:uuid>urn:uuid:06af2027-9c97-4b0f-94a3-e7db2d594649</aces:uuid>
+        </aces:lookTransform>
+        <aces:outputTransform applied="true">
+            <aces:description>Test ODT</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

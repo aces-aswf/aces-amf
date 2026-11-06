@@ -1,0 +1,98 @@
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [main, pypi-publish-test]
+  # Or you can keep release triggers if preferred:
+  # release:
+  #   types: [created]
+
+jobs:
+  get-packages:
+    name: Discover Packages
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.set-matrix.outputs.packages }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          # Add other PyPI package names to this array as they are ready
+          echo 'packages=["aswf-aces-common"]' >> $GITHUB_OUTPUT
+
+  publish:
+    name: Publish (${{ matrix.package }})
+    needs: get-packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.get-packages.outputs.packages) }}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/${{ matrix.package }}
+    permissions:
+      contents: read
+      id-token: write # Mandatory for PyPI OIDC Trusted Publishing
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Check if version already exists on PyPI
+        id: check-version
+        env:
+          PACKAGE_NAME: ${{ matrix.package }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import tomllib
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          name = os.environ["PACKAGE_NAME"]
+          # Repository folder names omit the distribution's "aswf-" prefix.
+          package_dir = Path("packages") / name.removeprefix("aswf-")
+          with (package_dir / "pyproject.toml").open("rb") as source:
+              version = tomllib.load(source)["project"]["version"]
+          print(f"Package: {name}, local version: {version}")
+
+          url = (
+              "https://pypi.org/pypi/"
+              f"{urllib.parse.quote(name, safe='')}/"
+              f"{urllib.parse.quote(version, safe='')}/json"
+          )
+          try:
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  json.load(response)
+              version_exists = True
+          except urllib.error.HTTPError as error:
+              if error.code != 404:
+                  raise
+              version_exists = False
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write(f"version_exists={str(version_exists).lower()}\n")
+          action = "Skipping published version" if version_exists else "Proceeding to publish"
+          print(f"::notice::{action}: {name} {version}")
+          PY
+
+      - name: Build package wheel and source distribution
+        if: steps.check-version.outputs.version_exists == 'false'
+        run: |
+          uv build --package ${{ matrix.package }}
+
+      - name: Publish package distributions to PyPI
+        if: steps.check-version.outputs.version_exists == 'false'
+        uses: pypa/gh-action-pypi-publish@release/v1
