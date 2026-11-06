@@ -12,13 +12,13 @@ jobs:
     name: Discover Packages
     runs-on: ubuntu-latest
     outputs:
-      packages: ${{ steps.set-matrix.id == 'set-matrix' && steps.set-matrix.outputs.packages || '["aswf-aces-common", "aswf-aces-amf-lib", "aswf-aces-amf-utils", "aswf-aces-transforms"]' }}
+      packages: ${{ steps.set-matrix.outputs.packages }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - id: set-matrix
         run: |
-          # Output the list of your 4 package folder names as a JSON array
+          # Add other PyPI package names to this array as they are ready
           echo 'packages=["aswf-aces-common"]' >> $GITHUB_OUTPUT
 
   publish:
@@ -33,6 +33,7 @@ jobs:
       name: pypi
       url: https://pypi.org/p/${{ matrix.package }}
     permissions:
+      contents: read
       id-token: write # Mandatory for PyPI OIDC Trusted Publishing
     steps:
       - name: Checkout Repository
@@ -48,38 +49,44 @@ jobs:
 
       - name: Check if version already exists on PyPI
         id: check-version
+        env:
+          PACKAGE_NAME: ${{ matrix.package }}
         run: |
-          PKG_DIR="packages/${{ matrix.package }}"
-          
-          # Extract version from the package's pyproject.toml using python
-          PKG_VERSION=$(python -c "
-            import tomllib
-            with open('$PKG_DIR/pyproject.toml', 'rb') as f:
-                data = tomllib.load(f)
-            print(data['project']['version'])
-            ")
-          echo "Package: ${{ matrix.package }}"
-          echo "Local Version: $PKG_VERSION"
-          
-          # Check PyPI JSON API to see if this version is already published
-          PUBLISHED_VERSIONS=$(python -c "
-            import urllib.request, json
-            url = 'https://pypi.org/pypi/${{ matrix.package }}/json'
-            try:
-                with urllib.request.urlopen(url) as response:
-                    data = json.loads(response.read().decode())
-                    print(' '.join(data['releases'].keys()))
-            except Exception:
-                print('')
-            ")
-          
-          if echo "$PUBLISHED_VERSIONS" | grep -qw "$PKG_VERSION"; then
-            echo "version_exists=true" >> $GITHUB_OUTPUT
-            echo "::notice::Version $PKG_VERSION of ${{ matrix.package }} already exists on PyPI. Skipping publishing."
-          else
-            echo "version_exists=false" >> $GITHUB_OUTPUT
-            echo "::notice::Version $PKG_VERSION of ${{ matrix.package }} is new. Proceeding to publish."
-          fi
+          python - <<'PY'
+          import json
+          import os
+          import tomllib
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          name = os.environ["PACKAGE_NAME"]
+          # Repository folder names omit the distribution's "aswf-" prefix.
+          package_dir = Path("packages") / name.removeprefix("aswf-")
+          with (package_dir / "pyproject.toml").open("rb") as source:
+              version = tomllib.load(source)["project"]["version"]
+          print(f"Package: {name}, local version: {version}")
+
+          url = (
+              "https://pypi.org/pypi/"
+              f"{urllib.parse.quote(name, safe='')}/"
+              f"{urllib.parse.quote(version, safe='')}/json"
+          )
+          try:
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  json.load(response)
+              version_exists = True
+          except urllib.error.HTTPError as error:
+              if error.code != 404:
+                  raise
+              version_exists = False
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write(f"version_exists={str(version_exists).lower()}\n")
+          action = "Skipping published version" if version_exists else "Proceeding to publish"
+          print(f"::notice::{action}: {name} {version}")
+          PY
 
       - name: Build package wheel and source distribution
         if: steps.check-version.outputs.version_exists == 'false'
