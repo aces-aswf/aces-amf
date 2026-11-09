@@ -19,7 +19,7 @@ jobs:
       - id: set-matrix
         run: |
           # Add other PyPI package names to this array as they are ready
-          echo 'packages=["aswf-aces-common"]' >> $GITHUB_OUTPUT
+          echo 'packages=["aswf-aces-common","aswf-aces-transforms"]' >> $GITHUB_OUTPUT
 
   publish:
     name: Publish (${{ matrix.package }})
