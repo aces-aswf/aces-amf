@@ -2,7 +2,7 @@
 
 Reference Python library for reading, writing, and validating ACES Metadata Files (AMF).
 
-Provides type-safe Pydantic schema bindings, I/O helpers, and a pluggable validation system. For high-level builder and CLI tools, see [aswf-aces-amf-utils](../aces-amf-utils/).
+Provides type-safe Pydantic schema bindings, I/O helpers, and a pluggable validation system. For high-level builder and CLI tools, see [aswf-aces-amf-utils](https://pypi.org/project/aswf-aces-amf-utils/).
 
 This package currently supports AMF v2 schema only. ACES v1.x transform IDs embedded in AMF v2 documents remain supported, e.g. ACES 1.x pipelines in AMF v2.
 

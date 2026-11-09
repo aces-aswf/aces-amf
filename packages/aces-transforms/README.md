@@ -151,4 +151,4 @@ changes to the lookup implementation.
 
 ## License
 
-Apache-2.0. See [LICENSE](../../LICENSE) for details.
+Apache-2.0. See [LICENSE](https://github.com/aces-aswf/aces-amf/blob/main/LICENSE) for details.
