@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.01">
+	<ColorCorrection id="A001_C007_0923FJ">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C006_09233K">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C005_0923SG">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C004_0923DS">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C003_0923MO">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C002_0923OE">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C001_0923PL">
+		<SOPNode>
+			<Description>A001</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+</ColorCorrectionCollection>

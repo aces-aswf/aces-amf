@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: Apache-2.0
+[project]
+name = "aces-amf"
+version = "0.1.0"
+description = "ACES Metadata File (AMF) monorepo"
+requires-python = ">=3.10"
+dependencies = [
+    "aswf-aces-amf-lib>=0.1.0",
+    "aswf-aces-amf-utils>=0.1.0",
+    "aswf-aces-common>=0.1.0",
+    "aswf-aces-transforms>=0.1.0",
+]
+
+[tool.uv.sources]
+aswf-aces-amf-lib = { workspace = true }
+aswf-aces-amf-utils = { workspace = true }
+aswf-aces-common = { workspace = true }
+aswf-aces-transforms = { workspace = true }
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+
+[tool.ruff]
+line-length = 140
+
+[tool.pytest.ini_options]
+testpaths = ["packages/*/tests"]

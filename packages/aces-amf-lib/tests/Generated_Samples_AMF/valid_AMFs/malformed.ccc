@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.01">
+	<ColorCorrection id="BROKEN_001">
+		<SOPNode>
+			<Description>This is malformed</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040
+			<!-- Missing closing tag for Offset -->
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		<!-- Missing closing tag for SATNode -->
+	</ColorCorrection>
+<!-- Missing closing tag for ColorCorrectionCollection -->
+

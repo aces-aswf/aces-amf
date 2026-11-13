@@ -1,0 +1,83 @@
+# Patch: v2_compound_fields
+#
+# What: Replaces the separate working_location and look_transform fields on
+#       PipelineType with a single compound field:
+#         working_location_or_look_transform: list[EmptyType | LookTransformType]
+#       Also appends the look_transforms property and WorkingLocationType alias.
+#
+# Why: The AMF v2 XSD uses xs:choice maxOccurs="unbounded" to allow
+#      workingLocation and lookTransform elements to be freely interleaved.
+#      xsdata generates these as two separate lists, which destroys element
+#      ordering. The compound field (xsdata "Elements" type with "choices")
+#      preserves the original interleaved order, which is required for correct
+#      workingLocation positional semantics in an AMF pipeline.
+#
+# If this patch fails: the PipelineType field layout in the generated
+#      aces_metadata_file.py has changed. Regenerate with:
+#      ./generate_bindings.sh --gen-patches
+
+--- aces_metadata_file.py
++++ aces_metadata_file.py
+@@ -708,21 +708,25 @@
+             "namespace": "urn:ampas:aces:amf:v2.0",
+         },
+     )
+-    working_location: list[EmptyType] = field(
+-        default_factory=list,
+-        metadata={
+-            "name": "workingLocation",
+-            "type": "Element",
+-            "namespace": "urn:ampas:aces:amf:v2.0",
+-        },
+-    )
+-    look_transform: list[LookTransformType] = field(
+-        default_factory=list,
+-        metadata={
+-            "name": "lookTransform",
+-            "type": "Element",
+-            "namespace": "urn:ampas:aces:amf:v2.0",
+-        },
++    working_location_or_look_transform: list[EmptyType | LookTransformType] = (
++        field(
++            default_factory=list,
++            metadata={
++                "type": "Elements",
++                "choices": (
++                    {
++                        "name": "workingLocation",
++                        "type": EmptyType,
++                        "namespace": "urn:ampas:aces:amf:v2.0",
++                    },
++                    {
++                        "name": "lookTransform",
++                        "type": LookTransformType,
++                        "namespace": "urn:ampas:aces:amf:v2.0",
++                    },
++                ),
++            },
++        )
+     )
+     output_transform: None | OutputTransformType = field(
+         default=None,
+@@ -773,3 +777,21 @@
+             "required": True,
+         },
+     )
++
++
++# --- Post-generation additions (applied by generate_bindings.sh) ---
++
++
++def _pipeline_get_look_transforms(self) -> list["LookTransformType"]:
++    """Read-only filtered view: only LookTransformType items from the
++    compound working_location_or_look_transform field."""
++    return [
++        x
++        for x in self.working_location_or_look_transform
++        if isinstance(x, LookTransformType)
++    ]
++
++
++PipelineType.look_transforms = property(_pipeline_get_look_transforms)
++
++WorkingLocationType = EmptyType

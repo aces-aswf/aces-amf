@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>Receipt AMF - All Transforms Already Applied</aces:description>
+        <aces:author>
+            <aces:name>Finishing Colorist</aces:name>
+            <aces:emailAddress>finishing@postproduction.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:a3ffe0cd-0db9-46d9-a9c9-efa43ce9ca12</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Delivered Grade - All Transforms Baked In</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:1dbc1086-7adb-4ee3-be1c-936350c46e6d</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="true">
+            <aces:description>ARRI Alexa LogC to ACES</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:IDT.ARRI.Alexa-v3-logC-EI800.a1.v2</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="true">
+            <aces:description>Primary Grade</aces:description>
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACEScct_to_ACES.a1.0.3</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:SOPNode>
+                <cdl:Slope>1.2 1.05 0.95</cdl:Slope>
+                <cdl:Offset>0.0 0.0 0.0</cdl:Offset>
+                <cdl:Power>1.0 1.0 1.0</cdl:Power>
+            </cdl:SOPNode>
+            <cdl:SatNode>
+                <cdl:Saturation>1.15</cdl:Saturation>
+            </cdl:SatNode>
+        </aces:lookTransform>
+        <aces:lookTransform applied="true">
+            <aces:description>Secondary Corrections</aces:description>
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACEScct_to_ACES.a1.0.3</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:SOPNode>
+                <cdl:Slope>1.05 1.1 1.0</cdl:Slope>
+                <cdl:Offset>0.02 0.0 -0.01</cdl:Offset>
+                <cdl:Power>1.0 0.98 1.0</cdl:Power>
+            </cdl:SOPNode>
+            <cdl:SatNode>
+                <cdl:Saturation>1.05</cdl:Saturation>
+            </cdl:SatNode>
+        </aces:lookTransform>
+        <aces:outputTransform applied="true">
+            <aces:description>Rec.709 Output for Delivery</aces:description>
+            <aces:referenceRenderingTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:RRT.a1.0.3</aces:transformId>
+            </aces:referenceRenderingTransform>
+            <aces:outputDeviceTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3</aces:transformId>
+            </aces:outputDeviceTransform>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>Inverse ODT as Input Transform</aces:description>
+        <aces:author>
+            <aces:name>VFX Pipeline TD</aces:name>
+            <aces:emailAddress>pipeline@vfx.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:4c5c25a9-e91c-4a25-9c0e-f103f73cf8c7</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Reverse Pipeline - Rendered to ACES</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:49Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:49Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:48754cee-db00-480f-8d4e-9c066ce58d0c</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>1</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="false">
+            <aces:description>Inverse Rec.709 ODT + Inverse RRT to ACES</aces:description>
+            <aces:inverseOutputDeviceTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:InvODT.Academy.Rec709_100nits_dim.a1.0.3</aces:transformId>
+            </aces:inverseOutputDeviceTransform>
+            <aces:inverseReferenceRenderingTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:InvRRT.a1.0.3</aces:transformId>
+            </aces:inverseReferenceRenderingTransform>
+        </aces:inputTransform>
+        <aces:lookTransform applied="false">
+            <aces:description>Gamut Compress for OOG Protection</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:LMT.Academy.GamutCompress.a1.3.0</aces:transformId>
+        </aces:lookTransform>
+        <aces:lookTransform applied="false">
+            <aces:description>Identity CDL</aces:description>
+            <aces:cdlWorkingSpace>
+                <aces:toCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACES_to_ACEScct.a1.0.3</aces:transformId>
+                </aces:toCdlWorkingSpace>
+                <aces:fromCdlWorkingSpace>
+                    <aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.ACEScct_to_ACES.a1.0.3</aces:transformId>
+                </aces:fromCdlWorkingSpace>
+            </aces:cdlWorkingSpace>
+            <cdl:ASC_SOP>
+                <cdl:Slope>1.0 1.0 1.0</cdl:Slope>
+                <cdl:Offset>0.0 0.0 0.0</cdl:Offset>
+                <cdl:Power>1.0 1.0 1.0</cdl:Power>
+            </cdl:ASC_SOP>
+            <cdl:ASC_SAT>
+                <cdl:Saturation>1.0</cdl:Saturation>
+            </cdl:ASC_SAT>
+        </aces:lookTransform>
+        <aces:outputTransform applied="false">
+            <aces:description>ACES to Rec.709</aces:description>
+            <aces:referenceRenderingTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:RRT.a1.0.3</aces:transformId>
+            </aces:referenceRenderingTransform>
+            <aces:outputDeviceTransform>
+                <aces:transformId>urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3</aces:transformId>
+            </aces:outputDeviceTransform>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

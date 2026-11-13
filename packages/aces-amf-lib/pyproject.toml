@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aswf-aces-amf-lib"
+version = "0.1.0"
+description = "Reference library for reading, writing, and validating ACES Metadata Files (AMF)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = [
+    "aswf-aces-common>=0.1.0",
+    "lxml>=4.9.0",
+    "xsdata[lxml]>=24.0.0",
+    "xsdata-pydantic>=24.5",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    "aswf-aces-transforms>=0.1.0",
+]
+
+[tool.uv.sources]
+aswf-aces-common = { workspace = true }
+aswf-aces-transforms = { workspace = true }
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aswf.aces.amf_lib*"]
+
+[tool.setuptools.package-data]
+"aswf.aces.amf_lib" = [
+    "data/amf-schema/**/*.xsd",
+    "fixtures/amf-examples/*.amf",
+    "fixtures/amf-examples/*.clf",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140

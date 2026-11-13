@@ -1,0 +1,19 @@
+--- __init__.py
++++ __init__.py
+@@ -11,6 +11,7 @@
+     ClipIdType,
+     DateTimeType,
+     EmptyType,
++    WorkingLocationType,
+     HashAlgoType,
+     HashType,
+     InfoType,
+@@ -139,7 +140,7 @@
+     "CdlWorkingSpaceType",
+     "ClipIdType",
+     "DateTimeType",
+-    "EmptyType",
++    "WorkingLocationType",
+     "HashAlgoType",
+     "HashType",
+     "InfoType",
