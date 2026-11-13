@@ -2,13 +2,16 @@
 
 CLI, builder, and utilities for creating, modifying, validating, and analyzing ACES Metadata Files (AMF).
 
-This package currently supports AMF v2 schema only. ACES v1.x transform IDs embedded in AMF v2 documents remain supported, e.g. ACES 1.x pipelines in AMF v2.
+This package currently supports AMF v2.0 schema only. The AMF schema version is separate from the ACES system version of a given AMF, e.g. ACES v1.3 system version and transform IDs are supported in AMF v2.0.
 
 ## Installation
 
 ```bash
 pip install aswf-aces-amf-utils
 ```
+
+This package installs the `amf` command-line utility and its runtime dependencies, including the
+core library and transform registry. Python 3.10 or newer is required.
 
 ## Quick Start
 
@@ -24,7 +27,6 @@ print(aces_amf.input_transform)
 # Build a new AMF from scratch
 amf_doc = (AMFBuilder()
     .with_description("My Show - Ep 1")
-    .with_author(amf.AuthorType(name="Jane Doe", email_address="jane@example.com"))
     .with_input_transform(amf.InputTransformType(
         transform_id="urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1",
         applied=False))
@@ -131,6 +133,7 @@ All return `self` for fluent chaining:
 ```python
 from aswf.aces.amf_lib import amf, save_amf
 from aswf.aces.amf_utils import AMFBuilder
+from aswf.aces.transforms import ACESTransformRegistry
 
 amf = (AMFBuilder(aces_version=(2, 0, 0))
     .with_description("DI Grade")
@@ -148,7 +151,8 @@ amf = (AMFBuilder(aces_version=(2, 0, 0))
         applied=False))
     .build())
 
-save_amf(amf, "output.amf")
+registry = ACESTransformRegistry()
+save_amf(amf, "output.amf", transform_registry=registry)
 ```
 
 ## Look Stack Management
@@ -198,6 +202,27 @@ cdl_dict = cdl_look_transform_to_dict(lt)
 # {"asc_sop": {"slope": [...], "offset": [...], "power": [...]}, "asc_sat": 0.95}
 ```
 
+`cdl_look_transform` defaults to ACES 2.0 and an ACEScct working space. Pass
+`aces_version` matching the AMF's system version when creating a CDL for a
+different ACES version. You can pass `working_space` to select another CSC
+working space; the transform registry is used to find its inverse.
+
+## File Hashes
+
+`ACESAMF.compute_file_hashes()` computes hashes for existing files referenced
+by transforms in the AMF's pipelines, stores them on the model, and returns a
+mapping from each file reference to its digest. It resolves relative file
+references against `base_path`, which defaults to the current working directory.
+The default algorithm is the AMF SHA-256 algorithm URI.
+
+```python
+from aswf.aces.amf_utils import ACESAMF
+
+amf = ACESAMF.from_file("show/shot.amf")
+hashes = amf.compute_file_hashes(base_path="show")
+amf.write("show/shot_with_hashes.amf")
+```
+
 ## Diff
 
 Compare two AMF files or objects:
@@ -214,7 +239,8 @@ if result.has_differences:
 
 ## CLI
 
-The `amf` command provides a full suite of tools:
+The `amf` command provides a full suite of tools. Transform ID validation uses
+`aswf-aces-transforms` by default.
 
 ```bash
 # Validate AMF files
@@ -232,7 +258,7 @@ amf create output.amf -d "My Show" --author "Jane Doe" \
     --odt "urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1"
 
 # Add a CDL look transform
-amf add-cdl shot.amf --slope 1.2 1.0 0.8 --saturation 0.95 -d "Primary grade"
+amf add-cdl shot.amf --slope 1.2 1.0 0.8 --saturation 0.95 -d "Primary grade" -o shot_graded.amf
 
 # Compare two AMF files
 amf diff a.amf b.amf --verbose
@@ -242,13 +268,8 @@ amf transforms list --category IDT
 amf transforms info "urn:ampas:aces:transformId:v2.0:CSC.Academy.ACES_to_ACEScc.a2.v1"
 amf transforms categories
 
-# File hashes
+# Print a checksum of the AMF document (does not modify it)
 amf compute-hashes shot.amf
-
-# Template management
-amf template list
-amf template show <template-id>
-amf template search "HDR"
 ```
 
 ## Key Types
