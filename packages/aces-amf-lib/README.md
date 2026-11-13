@@ -2,9 +2,11 @@
 
 Reference Python library for reading, writing, and validating ACES Metadata Files (AMF).
 
-Provides type-safe Pydantic schema bindings, I/O helpers, and a pluggable validation system. For high-level builder and CLI tools, see [aswf-aces-amf-utils](https://pypi.org/project/aswf-aces-amf-utils/).
+Provides type-safe Pydantic schema bindings, I/O helpers, and a pluggable validation system.
 
-This package currently supports AMF v2 schema only. ACES v1.x transform IDs embedded in AMF v2 documents remain supported, e.g. ACES 1.x pipelines in AMF v2.
+For high-level builder and CLI tools, see [aswf-aces-amf-utils](https://pypi.org/project/aswf-aces-amf-utils/).
+
+This package currently supports AMF v2.0 schema only. The AMF schema version is separate from the ACES system version of a given AMF, e.g. ACES v1.3 system version and transform IDs are supported in AMF v2.0.
 
 ## Installation
 
@@ -12,12 +14,28 @@ This package currently supports AMF v2 schema only. ACES v1.x transform IDs embe
 pip install aswf-aces-amf-lib
 ```
 
+This installs the AMF models, I/O helpers, and bundled XSD schemas.
+
+This package requires Python 3.10 or newer.
+
+> **IMPORTANT:** This package includes **schema** validation against the XSD. This checks an AMF is formed correctly, but does not guarantee the transform IDs (URNs) exist in the official ACES transform registry.
+>
+>**Semantic** validation is also included (such as in `validate_all()` and with `validate=True`), which by default will also check transform IDs (URNs) exist in the ACES transform registry. To enable these checks, install `aswf-aces-transforms` and pass an `ACESTransformRegistry()` instance.
+> ```bash
+> pip install aswf-aces-amf-lib aswf-aces-transforms
+> ```
+> Reading and writing without semantic validation, and only XSD schema validation, does not require `aswf-aces-transforms`.
+>
+> See [Semantic Validation](#semantic-validation) section below.
+>
+> Alternatively, use [aswf-aces-amf-utils](https://pypi.org/project/aswf-aces-amf-utils/) which installs this library and the registry as dependencies.
+
 ## Quick Start
 
 ```python
 from aswf.aces.amf_lib import load_amf, save_amf, amf, validate_all
 
-# Load an AMF v2 file without registry-backed validation
+# Load an AMF file without explicit validation
 amf_doc = load_amf("example.amf", validate=False)
 print(f"Description: {amf_doc.amf_info.description}")
 print(f"Input: {amf_doc.pipeline.input_transform}")
@@ -41,12 +59,12 @@ for msg in messages:
 
 ## Features
 
-- **Read/Write AMF files** -- Load, modify, and serialize AMF v2 documents
-- **XSD schema validation** -- Validate against the bundled AMF v2 XML schema
+- **Read/Write AMF files** -- Load, modify, and serialize AMF documents
+- **XSD schema validation** -- Validate against the bundled AMF XML schema
 - **Semantic validation** -- Date logic, UUID uniqueness, CDL value ranges, applied order, metadata completeness, file path security, transform ID verification
 - **Pluggable validators** -- Register custom validators via the `aces_amf.validators` entry point
-- **Type-safe Pydantic models** -- xsdata-generated Pydantic `BaseModel` bindings for AMF v2
-- **Zero network calls** -- Everything works offline with bundled schemas
+- **Type-safe Pydantic models** -- xsdata-generated Pydantic `BaseModel` bindings for AMF
+- **Offline operation** -- The AMF XSD schemas are bundled; the library makes no network calls. Transform ID validation uses a registry implementation supplied by the caller.
 
 ## I/O Functions
 
@@ -62,15 +80,38 @@ save_amf(amf_doc, "output.amf", validate=False)
 xml_string = render_amf(amf_doc, validate=False)
 ```
 
-These I/O functions default to `validate=True`. When validation is enabled,
-pass a registry implementation with `transform_registry=registry`. Pass
-`validate=False` to skip explicit XSD and semantic validation. Parsing still
-constructs the schema-derived AMF model, so input that cannot be represented by
-that model raises `AMFSchemaError` regardless of the `validate` setting.
+These I/O functions default to `validate=True`. The default semantic validators
+include transform ID registry checks, so you must pass a registry implementation with
+`transform_registry=registry` when validation is enabled. For example, install
+`aswf-aces-transforms` and pass an `ACESTransformRegistry()` instance as the
+`transform_registry` argument.
+Pass `validate=False` to skip explicit validation. Even with `validate=False`, the file must be readable as an AMF document. Otherwise, parsing raises `AMFSchemaError`.
+
+```python
+# Load ACES transform registry
+from aswf.aces.transforms import ACESTransformRegistry
+
+# Set registry
+registry = ACESTransformRegistry()
+
+# Load AMF with registry-backed validation
+amf_doc = load_amf(
+    "file.amf",
+    validate=True,
+    transform_registry=registry,
+)
+
+save_amf(
+    amf_doc,
+    "output.amf",
+    validate=True,
+    transform_registry=registry,
+)
+```
 
 ## Schema Bindings
 
-The `amf` module provides Pydantic models generated from the ACES AMF v2 XSD schema:
+The `amf` module provides Pydantic models generated from the AMF XSD schema:
 
 ```python
 from aswf.aces.amf_lib import AcesMetadataFile, amf
@@ -113,7 +154,7 @@ idx = get_working_location_index(pipeline)  # int | None
 
 ### Schema Validation
 
-Validates AMF v2 XML against the bundled XSD schema:
+Validates AMF XML against the bundled XSD schema:
 
 ```python
 from aswf.aces.amf_lib import validate_schema
@@ -142,13 +183,31 @@ Built-in semantic validators:
 | `metadata` | Description, authors, transform descriptions present |
 | `applied_order` | Applied transforms follow correct logical order |
 | `file_paths` | No path traversal, portable characters |
-| `file_references` | Referenced transform and CDL files exist and are valid |
+| `file_references` | Referenced transform and CDL files exist and are valid (requires `base_path`) |
 | `hash_encoding` | Hash values use valid, standard encoding |
 | `working_space` | At most one working location, CDL transforms have working space |
 | `transform_ids` | Transform ID URN format validation |
 | `transform_placement` | Transform types appear in permitted pipeline positions |
-| `file_hashes` | File hash integrity (SHA256, SHA1, MD5) |
-| `transform_id_registry` | Transform IDs exist in provided registry |
+| `file_hashes` | File hash integrity (SHA256, SHA1, MD5; requires `base_path`) |
+| `transform_id_registry` | Transform IDs exist in the provided registry (required unless this validator is excluded) |
+
+File reference and hash validators resolve referenced files relative to
+`base_path`. It defaults to `None`, in which case those checks are skipped.
+Set it to the directory containing the referenced files when calling
+`validate_semantic` or `validate_all`:
+
+```python
+from pathlib import Path
+from aswf.aces.amf_lib import validate_all
+from aswf.aces.transforms import ACESTransformRegistry
+
+registry = ACESTransformRegistry()
+messages = validate_all(
+    "show.amf",
+    base_path=Path("/path/to/files"),
+    transform_registry=registry,
+)
+```
 
 ### Combined Validation
 
@@ -184,9 +243,9 @@ class MyValidator:
 ## Utilities
 
 ```python
-from aswf.aces.amf_lib import compute_file_hash, DEFAULT_HASH_ALGORITHM
+from aswf.aces.amf_lib import compute_file_hash
 
-# Compute file hash
+# The algorithm argument is a hashlib name, not an AMF algorithm URI.
 digest = compute_file_hash("grade.clf", "sha256")
 ```
 
