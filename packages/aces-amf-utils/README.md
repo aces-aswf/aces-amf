@@ -274,7 +274,7 @@ amf compute-hashes shot.amf
 
 ## Key Types
 
-All transform and metadata types come from `aswf.aces.amf_lib.amf`:
+All transform and metadata types are provided by [aswf-aces-amf-lib](https://pypi.org/project/aswf-aces-amf-lib/) and imported via `aswf.aces.amf_lib.amf`:
 
 ```python
 from aswf.aces.amf_lib.amf import (
