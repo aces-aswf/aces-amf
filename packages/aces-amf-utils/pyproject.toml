@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aswf-aces-amf-utils"
+version = "0.1.0"
+description = "CLI, builder, and utilities for ACES Metadata Files (AMF)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = [
+    "aswf-aces-amf-lib>=0.1.0",
+    "aswf-aces-transforms>=0.1.0",
+    "click>=8.0.0",
+]
+
+[project.scripts]
+amf = "aswf.aces.amf_utils.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aswf.aces.amf_utils*"]
+
+[tool.uv.sources]
+aswf-aces-amf-lib = { workspace = true }
+aswf-aces-transforms = { workspace = true }
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

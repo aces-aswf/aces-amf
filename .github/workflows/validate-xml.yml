@@ -16,7 +16,7 @@ jobs:
 
     - name: Install xmllint
       run: |
-        sudo apt-get update 
+        sudo apt-get update
         sudo apt-get install -y libxml2-utils
 
     - name: Validate XML Files
@@ -25,3 +25,16 @@ jobs:
         for file in examples/**/*.amf; do
           xmllint --noout --schema schema/acesMetadataFile.xsd "$file"
         done
+
+    - uses: astral-sh/setup-uv@v3
+      with:
+        python-version: "3.12"
+
+    - name: Install dependencies
+      run: uv sync --all-packages
+
+    - name: Check hash sanity
+      # xmllint can't catch hex-encoded or wrong-size hash values (a hash is a bare
+      # base64Binary with no length/pattern constraint), so this scans every .amf in
+      # the repo for hashes that are mis-encoded, unattached to a file, or mismatched.
+      run: uv run python scripts/check_hash_sanity.py

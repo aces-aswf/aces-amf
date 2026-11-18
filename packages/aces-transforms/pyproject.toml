@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aswf-aces-transforms"
+version = "0.1.0"
+description = "ACES transform URN registry — lookup, validation, and version mapping"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = ["aswf-aces-common>=0.1.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aswf.aces.transforms*"]
+
+[tool.setuptools.package-data]
+"aswf.aces.transforms" = ["data/*.json"]
+
+[tool.uv.sources]
+aswf-aces-common = { workspace = true }
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

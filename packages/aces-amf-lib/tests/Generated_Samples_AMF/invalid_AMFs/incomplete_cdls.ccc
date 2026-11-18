@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.01">
+	<ColorCorrection id="A001_C001_0923PL">
+		<SOPNode>
+			<Description>Scene 1 Grade</Description>
+			<Slope>1.0240 0.9855 0.8645</Slope>
+			<Offset>-0.0468 -0.0365 0.0040</Offset>
+			<Power>0.8631 0.8763 0.9053</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.1000</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<ColorCorrection id="A001_C002_0923OE">
+		<SOPNode>
+			<Description>Scene 2 Grade</Description>
+			<Slope>0.9800 1.0100 1.0050</Slope>
+			<Offset>0.0020 -0.0100 0.0030</Offset>
+			<Power>1.0100 0.9900 1.0050</Power>
+		</SOPNode>
+		<SATNode>
+			<Saturation>1.0200</Saturation>
+		</SATNode>
+	</ColorCorrection>
+	<!-- Note: Missing A001_C005_0923SG which will be referenced by the AMF -->
+</ColorCorrectionCollection>
+

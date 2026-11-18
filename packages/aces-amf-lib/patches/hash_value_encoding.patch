@@ -1,0 +1,30 @@
+# hash_value_encoding.patch
+# Target: amf/aces_metadata_file.py
+#
+# Adds a non-serialized PrivateAttr `_source_encoding` to HashType. The load-time hash
+# normalizer (amf_helpers._normalize_hashes) records whether a hash <value> was read as
+# "base64", "hex", or "unknown", while normalizing value itself to the correct digest
+# bytes. The hash_encoding validator reads this to warn on hex (non-standard) and error
+# on undecodable values. The attribute is private, so it is never serialized to XML.
+--- aces_metadata_file.py
++++ aces_metadata_file.py
+@@ -9,7 +9,7 @@
+ from decimal import Decimal
+ from enum import Enum
+
+-from pydantic import BaseModel, ConfigDict
++from pydantic import BaseModel, ConfigDict, PrivateAttr
+ from xsdata.models.datatype import XmlDateTime
+ from xsdata_pydantic.fields import field
+
+@@ -188,6 +188,10 @@
+         name = "hashType"
+
+     model_config = ConfigDict(defer_build=True)
++    # Non-serialized: records the on-disk encoding of `value` detected at load
++    # time ("base64", "hex", or "unknown"). None when constructed in-memory.
++    # See aces.amf_lib.validation.hash_encoding and amf_helpers._normalize_hashes.
++    _source_encoding: str | None = PrivateAttr(default=None)
+     value: bytes = field(
+         default=b"",
+         metadata={

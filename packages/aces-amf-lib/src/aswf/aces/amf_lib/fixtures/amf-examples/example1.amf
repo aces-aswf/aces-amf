@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile version="2.0" xmlns:aces="urn:ampas:aces:amf:v2.0">
+    <aces:amfInfo>
+        <aces:dateTime>
+            <aces:creationDateTime>2020-11-10T13:20:00Z</aces:creationDateTime>
+            <aces:modificationDateTime>2020-11-10T13:20:00Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:54bfd6af-57c0-4bd1-8f95-0952c4f25f86</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:dateTime>
+                <aces:creationDateTime>2020-11-10T13:20:00Z</aces:creationDateTime>
+                <aces:modificationDateTime>2020-11-10T13:20:00Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:d587baff-1e20-46e7-a3b1-bbb1194b0172</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>1</aces:majorVersion>
+                <aces:minorVersion>3</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:outputTransform applied="false">
+            <aces:transformId>urn:ampas:aces:transformId:v1.5:RRTODT.Academy.Rec2020_1000nits_15nits_ST2084.a1.1.0</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

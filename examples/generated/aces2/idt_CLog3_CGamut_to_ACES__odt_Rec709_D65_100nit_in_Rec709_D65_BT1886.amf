@@ -27,7 +27,7 @@
         </aces:pipelineInfo>
         <aces:inputTransform applied="false">
             <aces:description>Canon Log 3 Cinema Gamut to ACES2065-1</aces:description>
-            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a1.v1</aces:transformId>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Canon.CLog3_CGamut_to_ACES.a2.v1</aces:transformId>
         </aces:inputTransform>
         <aces:outputTransform applied="false">
             <aces:description>Rec.709 BT.1886</aces:description>

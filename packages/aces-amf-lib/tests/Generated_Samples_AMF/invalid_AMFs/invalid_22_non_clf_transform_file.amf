@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aces:acesMetadataFile xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdl="urn:ASC:CDL:v1.01" version="2.0">
+    <aces:amfInfo>
+        <aces:description>INVALID: Non-CLF Transform File</aces:description>
+        <aces:author>
+            <aces:name>Test Suite</aces:name>
+            <aces:emailAddress>test@example.com</aces:emailAddress>
+        </aces:author>
+        <aces:dateTime>
+            <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+            <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+        </aces:dateTime>
+        <aces:uuid>urn:uuid:65389a3c-9470-4e09-95f9-0526e9da1d7a</aces:uuid>
+    </aces:amfInfo>
+    <aces:pipeline>
+        <aces:pipelineInfo>
+            <aces:description>Using a .cube file instead of CLF</aces:description>
+            <aces:dateTime>
+                <aces:creationDateTime>2026-03-26T19:19:50Z</aces:creationDateTime>
+                <aces:modificationDateTime>2026-03-26T19:19:50Z</aces:modificationDateTime>
+            </aces:dateTime>
+            <aces:uuid>urn:uuid:95407b14-933b-46cf-9902-2b08c1fe2c2f</aces:uuid>
+            <aces:systemVersion>
+                <aces:majorVersion>2</aces:majorVersion>
+                <aces:minorVersion>0</aces:minorVersion>
+                <aces:patchVersion>0</aces:patchVersion>
+            </aces:systemVersion>
+        </aces:pipelineInfo>
+        <aces:inputTransform applied="false">
+            <aces:description>Test IDT</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:CSC.Arri.LogC4_to_ACES.a2.v1</aces:transformId>
+        </aces:inputTransform>
+        <aces:lookTransform applied="false">
+            <aces:description>Look using non-CLF file</aces:description>
+            <aces:file>show_look.cube</aces:file>
+        </aces:lookTransform>
+        <aces:outputTransform applied="false">
+            <aces:description>Test ODT</aces:description>
+            <aces:transformId>urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1</aces:transformId>
+        </aces:outputTransform>
+    </aces:pipeline>
+</aces:acesMetadataFile>

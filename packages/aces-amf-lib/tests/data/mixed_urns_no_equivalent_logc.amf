@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<aces:acesMetadataFile version="2.0" xmlns:aces="urn:ampas:aces:amf:v2.0" xmlns:cdl="urn:ASC:CDL:v1.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ampas:aces:amf:v2.0 file:acesMetadataFile.xsd">
+	<aces:amfInfo>
+		<aces:description>Test AMF with no-equivalent v1.5 URN</aces:description>
+		<aces:author>
+			<aces:name>Test Generator</aces:name>
+			<aces:emailAddress>test@example.com</aces:emailAddress>
+		</aces:author>
+		<aces:dateTime>
+			<aces:creationDateTime>2026-03-24T00:00:00</aces:creationDateTime>
+			<aces:modificationDateTime>2026-03-24T00:00:00</aces:modificationDateTime>
+		</aces:dateTime>
+		<aces:uuid>urn:uuid:00000000-0000-0000-0000-000000000001</aces:uuid>
+	</aces:amfInfo>
+	<aces:clipId>
+		<aces:clipName>test_no_equivalent</aces:clipName>
+		<aces:file>test_no_equivalent</aces:file>
+	</aces:clipId>
+	<aces:pipeline>
+		<aces:pipelineInfo>
+			<aces:dateTime>
+				<aces:creationDateTime>2026-03-24T00:00:00</aces:creationDateTime>
+				<aces:modificationDateTime>2026-03-24T00:00:00</aces:modificationDateTime>
+			</aces:dateTime>
+			<aces:uuid>urn:uuid:00000000-0000-0000-0000-000000000002</aces:uuid>
+			<aces:systemVersion>
+				<aces:majorVersion>2</aces:majorVersion>
+				<aces:minorVersion>0</aces:minorVersion>
+				<aces:patchVersion>0</aces:patchVersion>
+			</aces:systemVersion>
+		</aces:pipelineInfo>
+		<aces:inputTransform applied="false">
+			<aces:description>ARRI LogC EI800 ALEXA Wide Gamut to ACES (no v2.0 equivalent)</aces:description>
+			<aces:transformId>urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.LogC_EI800_AWG_to_ACES.a1.1.0</aces:transformId>
+		</aces:inputTransform>
+		<aces:outputTransform applied="false">
+			<aces:description>ACES 2.0 Output - Rec709</aces:description>
+			<aces:transformId>urn:ampas:aces:transformId:v2.0:Output.Academy.Rec709-D65_100nit_in_Rec709-D65_BT1886.a2.v1</aces:transformId>
+		</aces:outputTransform>
+	</aces:pipeline>
+</aces:acesMetadataFile>
