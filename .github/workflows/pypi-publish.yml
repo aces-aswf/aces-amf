@@ -2,7 +2,7 @@ name: Publish to PyPI
 
 on:
   push:
-    branches: [main, pypi-publish-test]
+    branches: [main]
   # Or you can keep release triggers if preferred:
   # release:
   #   types: [created]

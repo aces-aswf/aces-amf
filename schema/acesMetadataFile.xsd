@@ -63,7 +63,7 @@
 	<!-- Define transform name types -->
 	<xs:simpleType name="tnLookTransform">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="urn:ampas:aces:transformId:v1.5:(LMT\.\S+\.\S+\.a\d+\.v\d+|LMT\.Academy\.\S+\.a\d+\.\d+\.\d+)"/>
+			<xs:pattern value="urn:ampas:aces:transformId:v1.5:(LMT\.\S+\.\S+\.a\d+\.v\d+|LMT\.Academy\.\S+\.a\d+\.v?\d+\.\d+)"/>
 			<xs:pattern value="urn:ampas:aces:transformId:v2.0:Look\.\S+\.\S+\.a\d+\.v\d+"/>
 		</xs:restriction>
 	</xs:simpleType>
